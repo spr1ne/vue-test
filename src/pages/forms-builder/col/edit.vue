@@ -59,12 +59,18 @@ import Component, { mixins } from 'vue-class-component';
   },
 })
 export default class PagesFormsBuilderColEdit extends mixins(RouterMixin) {
+  /**
+   * Колонка
+   */
   get col() {
     return useRepo(Col)
       .with('component')
       .find(this.$route.params.colId) as Col;
   }
 
+  /**
+   * (Handler) Редактировать компонент
+   */
   onEditComponent() {
     this.$router.push({
       name:   'componentEdit',
@@ -72,12 +78,18 @@ export default class PagesFormsBuilderColEdit extends mixins(RouterMixin) {
     });
   }
 
+  /**
+   * (Handler) Создать компонент
+   */
   onCreateComponent() {
     this.$router.push({
       name: 'componentNew',
     });
   }
 
+  /**
+   * Сохранить изменения
+   */
   onSubmit() {
     useRepo(Col)
       .save(this.col);

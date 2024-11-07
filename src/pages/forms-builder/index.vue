@@ -51,15 +51,25 @@ import { Vue } from 'vue-property-decorator';
   components: { UiButton },
 })
 export default class PagesFormsBuilderIndex extends Vue {
+  /**
+   * Все формы
+   */
   get forms() {
     return useRepo(Form)
       .all();
   }
 
+  /**
+   * (Handler) Создать форму
+   */
   onCreate() {
     this.$router.push({ name: 'new' });
   }
 
+  /**
+   * (Handler) Удалить форму
+   * @param form
+   */
   onDelete(form: Form) {
     // eslint-disable-next-line no-alert
     const result = window.confirm('Вы действительно хотите удалить форму?');

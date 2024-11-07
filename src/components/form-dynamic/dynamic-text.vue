@@ -1,34 +1,45 @@
 <template>
-  <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-  <input
-    :id="id"
-    type="text"
-    class="input"
-    ref="inputElement"
-    :value="value"
-    autocomplete="off"
-    :placeholder='placeholder'
-    :required='required'
-    @input="onInput"
-  />
+  <div>
+    <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
+    <input
+      :id="id"
+      type="text"
+      class="input"
+      ref="inputElement"
+      :value="value"
+      autocomplete="off"
+      :placeholder='placeholder'
+      :required='required'
+      @input="onInput"
+      @invalid="onInvalid"
+    />
+    <UiError v-if="isInvalid" :error="errorMsg"></UiError>
+  </div>
 </template>
 
 <script lang="ts">
+import UiError                     from '@/components/ui/ui-error.vue';
 import Col                         from '@/models/Col';
 import { DynamicComponentSetting } from '@/models/components/BaseDynamicComponent';
 import DynamicInputComponent       from '@/models/components/DynamicInputComponent';
 import Component                   from 'vue-class-component';
 import {
   Emit, Prop, Ref, Vue,
-}   from 'vue-property-decorator';
+}                                  from 'vue-property-decorator';
 
-@Component
+@Component({
+  components: {
+    UiError,
+  },
+})
 export default class DynamicText extends Vue {
   /**
    * (Emit) Изменение значения input
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Emit('onInput') onInput(event: KeyboardEvent) {}
+  @Emit('onInput') onInput(event: KeyboardEvent) {
+    this.isInvalid = false;
+  }
 
   /**
    * Строка
@@ -61,6 +72,16 @@ export default class DynamicText extends Vue {
   @Ref('inputElement') inputElement!: HTMLInputElement;
 
   /**
+   * Поле невалидно
+   */
+  isInvalid = false;
+
+  /**
+   * Сообщение с ошибкой
+   */
+  errorMsg = ''
+
+  /**
    * (HTML атрибут) ID
    */
   get id() {
@@ -82,6 +103,14 @@ export default class DynamicText extends Vue {
   get required() {
     const setting = this.settings.find((item) => item.name === 'required') as DynamicComponentSetting;
     return setting.value;
+  }
+
+  onInvalid(event: Event) {
+    const target = event.target as HTMLElement;
+
+    this.isInvalid = true;
+    this.errorMsg = 'Поле не должно быть пустым';
+    event.preventDefault();
   }
 }
 </script>

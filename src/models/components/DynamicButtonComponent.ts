@@ -28,7 +28,7 @@ export default class DynamicButtonComponent extends BaseDynamicComponent {
         type: 'text', title: 'Текст', name: 'title', value: 'Сохранить',
       },
       {
-        type: 'text', title: 'Событие', name: 'event', value: 'clear', hidden: true,
+        type: 'text', title: 'Событие', name: 'event', value: '', hidden: true,
       },
     ],
   })) declare props: IDynamicComponentProps;

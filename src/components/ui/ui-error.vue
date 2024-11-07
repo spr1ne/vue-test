@@ -1,5 +1,5 @@
 <template>
-  <p class="input-message input-message_warning"><span>{{error}}</span></p>
+  <p class="message message_warning mt-2"><span>{{error}}</span></p>
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@ $message-icon-text-color: #fff;
 $radio-label-color: #6a6a6a;
 
 // sass-lint:disable no-important
-.input-message {
+.message {
   background: $message-bg-color;
   border: 1px solid $message-border-color;
   border-radius: 3px;

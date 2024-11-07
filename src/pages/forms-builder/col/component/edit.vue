@@ -36,23 +36,39 @@ import Component, { mixins }  from 'vue-class-component';
   },
 })
 export default class PagesFormsBuilderColEditComponentEdit extends mixins(RouterMixin) {
+  /**
+   * Колонка
+   */
   get col() {
     return useRepo(Col).with('component').find(this.$route.params.colId) as Col;
   }
 
+  /**
+   * Компонент
+   */
   get component() {
     return this.col.component;
   }
 
+  /**
+   * Имя компонента
+   */
   get componentName() {
     return this.component.name;
   }
 
+  /**
+   * (Handler) Сохранение
+   */
   onSubmit() {
     useRepo(Col).save(this.col);
     this.navigateToParent();
   }
 
+  /**
+   * (Handler) Выбор компонента
+   * @param event
+   */
   onSelect(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const { value } = selectElement;

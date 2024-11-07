@@ -49,6 +49,9 @@ export default class UiButton extends Vue {
 </script>
 
 <style lang="scss">
+$btn-blue-bg-color: #5182ff;
+$btn-blue-hover-bg-color: #3e66ca;
+
 $btn-red-bg-color: #f54764;
 $btn-red-hover-bg-color: #b60036;
 
@@ -57,17 +60,17 @@ $btn-green-hover-bg-color: #008a64;
 
 .button {
   border-radius: 10px;
-  background-color: #5182ff;
+  background-color: $btn-blue-bg-color;
   color: white;
   padding: 10px 15px;
   width: 100%;
 
   &:hover {
-    background-color: #3e66ca;
+    background-color: $btn-blue-hover-bg-color;
   }
 
   &:focus-visible {
-    background-color: #3e66ca;
+    background-color: $btn-blue-hover-bg-color;
   }
 
   &:disabled {

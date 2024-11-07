@@ -16,6 +16,9 @@ import {
 
 @Component
 export default class DynamicButton extends Vue {
+  /**
+   * EventBus для сообщения между компонентами
+   */
   @Inject('dynamic-form-bus') dynamicFormBus!: Vue;
 
   /**

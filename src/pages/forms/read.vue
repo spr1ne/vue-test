@@ -24,6 +24,9 @@ import { Vue }     from 'vue-property-decorator';
   },
 })
 export default class PagesFormsRead extends Vue {
+  /**
+   * Открытая форма
+   */
   get form() {
     const formId = this.$route.params.id;
     return useRepo(Form).withAllRecursive(2).find(formId);

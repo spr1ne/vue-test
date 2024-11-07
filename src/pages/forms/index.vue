@@ -49,15 +49,25 @@ import { Vue }     from 'vue-property-decorator';
   components: { UiButton },
 })
 export default class PagesFormsIndex extends Vue {
+  /**
+   * Все формы
+   */
   get forms() {
     return useRepo(Form)
       .all();
   }
 
+  /**
+   * Открытие формы
+   * @param form
+   */
   onOpen(form: Form) {
     this.$router.push({ name: 'formRead', params: { id: form.id } });
   }
 
+  /**
+   * Создание формы
+   */
   onCreate() {
     this.$router.push({ name: 'new' });
   }

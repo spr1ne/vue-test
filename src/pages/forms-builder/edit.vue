@@ -32,20 +32,41 @@ import { Inject, Vue } from 'vue-property-decorator';
   },
 })
 export default class PagesFormsEdit extends Vue {
+  /**
+   * EventBus для сообщения между компонентами
+   */
   @Inject('fdb-event-bus') fdbEventBus!: Vue;
 
+  /**
+   * Загруженная форма
+   */
   form = {};
 
+  /**
+   * (Hook) created
+   */
   created() {
     this.fdbEventBus.$on('update-form', this.loadData);
   }
 
+  /**
+   * (Hook) beforeDestroy
+   */
+  beforeDestroy() {
+    this.fdbEventBus.$off('update-form', this.loadData);
+  }
+
+  /**
+   * Имитация загрузки данных
+   */
   async loadData() {
     const formId = this.$route.params.id;
     const form = useRepo(Form)
       .withAllRecursive(2)
       .find(formId) || {};
+
     Object.assign(this.form, form);
+
     return new Promise((resolve) => {
       setTimeout(() => { resolve(form); }, 1000);
     });

@@ -49,13 +49,21 @@ import { Vue }     from 'vue-property-decorator';
   components: { UiButton, UiModal },
 })
 export default class PagesFormsBuilderNew extends Vue {
+  /**
+   * Название формы
+   */
   title = '';
 
+  /**
+   * Описание формы
+   */
   description = '';
 
+  /**
+   * (Handler) Подтвердить форму
+   */
   onSubmit() {
     const formRepo = useRepo(Form);
-    debugger;
     const form     = formRepo.save({
       title:       this.title,
       description: this.description,
@@ -68,6 +76,9 @@ export default class PagesFormsBuilderNew extends Vue {
     });
   }
 
+  /**
+   * Закрыть окно создания формы
+   */
   onClose() {
     this.$router.go(-1);
   }

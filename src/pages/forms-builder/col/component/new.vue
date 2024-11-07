@@ -39,10 +39,14 @@ import Component, { mixins }           from 'vue-class-component';
   },
 })
 export default class PagesFormsBuilderColEditComponentNew extends mixins(RouterMixin) {
+  /**
+   * Экземпляр компонента
+   */
   componentInstance: ComponentsRegistry[keyof ComponentsRegistry] | null = null;
 
-  settings = {};
-
+  /**
+   * (Handler) Создание компонента
+   */
   onSubmit() {
     if (!this.componentInstance) {
       return;
@@ -66,6 +70,10 @@ export default class PagesFormsBuilderColEditComponentNew extends mixins(RouterM
     });
   }
 
+  /**
+   * (Handler) Выбор компонента
+   * @param event
+   */
   onSelect(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const { value }     = selectElement;
