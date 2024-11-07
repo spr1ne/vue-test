@@ -1,4 +1,4 @@
-# cft-test
+# vue-test
 
 ## Описание
 
