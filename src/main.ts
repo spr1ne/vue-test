@@ -7,6 +7,7 @@ import router      from './router';
 
 Vue.use(VueSuspense);
 Vue.config.productionTip = false;
+// eslint-disable-next-line no-console
 Vue.prototype.$log = console.log;
 
 new Vue({

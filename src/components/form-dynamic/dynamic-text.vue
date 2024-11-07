@@ -106,8 +106,6 @@ export default class DynamicText extends Vue {
   }
 
   onInvalid(event: Event) {
-    const target = event.target as HTMLElement;
-
     this.isInvalid = true;
     this.errorMsg = 'Поле не должно быть пустым';
     event.preventDefault();

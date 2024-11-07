@@ -1,10 +1,7 @@
 import BaseDynamicComponent, {
   IDynamicComponentProps,
-}                                    from '@/models/components/BaseDynamicComponent';
-import Row                           from '@/models/Row';
-import {
-  Attr, BelongsTo, HasMany, Str, Uid,
-} from 'pinia-orm/dist/decorators';
+}                          from '@/models/components/BaseDynamicComponent';
+import { Attr, Str, Uid } from 'pinia-orm/dist/decorators';
 
 export default class DynamicFormComponent extends BaseDynamicComponent {
   static entity = 'form_components';
