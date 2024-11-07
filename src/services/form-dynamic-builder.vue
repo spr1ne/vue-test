@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <fragment>
     <slot></slot>
-  </div>
+  </fragment>
 </template>
 
 <script lang="ts">
